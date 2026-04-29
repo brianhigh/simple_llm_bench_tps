@@ -1,0 +1,1 @@
+Write an R script that merges the two datasets stored in the CSV files in the data/ folder and plots the results as a box plot with one box for each "server" represented in the data. Save the plot as a PNG image (width=9in, height=5in). Test the script after you've written it.
