@@ -51,5 +51,6 @@ cd scripts/
 Generate the comparison plot:
 
 ```bash
+cd ../
 Rscript scripts/merge_and_plot.R
 ```
