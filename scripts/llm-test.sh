@@ -4,7 +4,8 @@
 mkdir -p ../data
 
 # Load model
-CMD="./llm_bench.sh http://localhost:1234 'lmstudio' 'qwen3.5-9b-mlx'"
+MODEL='qwen3.5-9b-mlx'
+CMD="./llm_bench.sh http://localhost:1234 'lmstudio' '$MODEL'"
 eval $CMD
 
 # Run benchmark
@@ -13,10 +14,11 @@ echo "$HEADER" > ../data/lmstudio_llm_bench.csv
 (for i in {1..10}; do eval $CMD; done) >> ../data/lmstudio_llm_bench.csv
 
 # Unload model
-lms unload 'qwen3.5-9b-mlx'
+lms unload "$MODEL"
 
 # Load model
-CMD="./llm_bench.sh http://localhost:11434 'ollama' 'qwen3.5:9b'"
+MODEL='qwen3.5:9b'
+CMD="./llm_bench.sh http://localhost:11434 'ollama' '$MODEL'"
 eval $CMD
 
 # Run benchmark
@@ -24,4 +26,4 @@ echo "$HEADER" > ../data/ollama_llm_bench.csv
 (for i in {1..10}; do eval $CMD; done) >> ../data/ollama_llm_bench.csv
 
 # Unload model
-curl http://localhost:11434/api/generate -d '{"model": "qwen3.5:9b", "keep_alive": 0}'
+curl http://localhost:11434/api/generate -d '{"model": "$MODEL", "keep_alive": 0}'
