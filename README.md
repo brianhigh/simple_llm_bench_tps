@@ -26,7 +26,7 @@ The benchmark measures **tokens per second** (throughput) for different LLM serv
 
 - `scripts/merge_and_plot.R` - R script for merging datasets and generating the box plot
 - `scripts/llm_bench.sh` - Shell script for running benchmarks
-- `scripts/llm-test.sh` - Test script for running benchark 10x per server type
+- `scripts/llm_test_ollama_vs_lmstudio.sh` - Test script for running benchark N times
 
 ## Plot Details
 
@@ -45,7 +45,7 @@ Run the benchmark script to generate results:
 
 ```bash
 cd scripts/
-./llm-test.sh
+./llm_test_ollama_vs_lmstudio.sh
 ```
 
 Generate the comparison plot:
