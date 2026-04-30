@@ -1,12 +1,24 @@
 #!/usr/bin/env bash
 
-URL="$1"
-API_KEY="$2"
-MODEL="$3"
+URL="$1"            # Required: Base URL for OpenAI-compatible endpoint
+API_KEY="$2"        # Required: API key (a non-empty text string allowed by endpoint)
+MODEL="$3"          # Required: Model "id"  as seen in /v1/models or /api/v1/models
+PROMPT_FILE="$4"    # Optional: Can be a prompt string or a path (/path/to/filename)
 
 if [ -z "$URL" ] || [ -z "$API_KEY" ] || [ -z "$MODEL" ]; then
-  echo "Usage: $0 <URL> <API_KEY> <MODEL_NAME>"
+  echo "Usage: $0 <URL> <API_KEY> <MODEL_NAME> <optional: PROMPT or PROMPT_FILE>"
   exit 1
+fi
+
+PROMPT="hello"
+# Use the PROMPT_FILE string as the prompt if it's not a readable file
+if [ ! -z "$PROMPT_FILE" && ! -r "$PROMPT_FILE" ]; then
+  PROMPT="$PROMPT_FILE"
+fi
+
+# Use the PROMPT_FILE string as the prompt filename if it's readable
+if [ ! -z "$PROMPT_FILE" && -r "$PROMPT_FILE" ]; then
+  PROMPT=$(jq -Rs . < "$PROMPT_FILE")
 fi
 
 # Portable millisecond timestamp
@@ -21,7 +33,7 @@ RESP=$(curl -s -X POST "$URL/v1/chat/completions" \
   -H "Authorization: Bearer $API_KEY" \
   -d "{
         \"model\": \"$MODEL\",
-        \"messages\": [{\"role\": \"user\", \"content\": \"hello\"}]
+        \"messages\": [{\"role\": \"user\", \"content\": $PROMPT}]
       }")
 
 END_TIME=$(now_ms)
