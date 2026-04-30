@@ -18,10 +18,11 @@ eval $CMD
 HEADER="model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second"
 DATA_FILE="$DATA_DIR/lmstudio_llm_bench.csv"
 echo "$HEADER" > "$DATA_FILE"
-(for i in {1..${N}}; do eval $CMD; done) >> "$DATA_FILE"
+(for i in $(seq 1 ${N}); do eval $CMD; done) >> "$DATA_FILE"
 
 # Unload model
-lms unload "$MODEL"
+MODELID=$(lms ps | grep "$MODEL" | cut -d" " -f 1)
+lms unload "$MODELID"
 
 # ---- Ollama Test ----
 
@@ -33,7 +34,7 @@ eval $CMD
 # Run benchmark
 DATA_FILE="$DATA_DIR/ollama_llm_bench.csv"
 echo "$HEADER" > "$DATA_FILE"
-(for i in {1..${N}}; do eval $CMD; done) >> "$DATA_FILE"
+(for i in $(seq 1 ${N}); do eval $CMD; done) >> "$DATA_FILE"
 
 # Unload model
-curl http://localhost:11434/api/generate -d '{"model": "$MODEL", "keep_alive": 0}'
+ollama stop "$MODEL"

@@ -37,7 +37,7 @@ p <- ggplot(merged_data, aes(x = source, y = tokens_per_second, fill = source)) 
 # Save as PNG
 dir.create(here("images"),  showWarnings = FALSE, recursive = TRUE)
 image_file <- here("images", "box_plot.png")
-ggsave(image_file, plot = p, width = 5, height = 9, dpi = 300)
+ggsave(image_file, plot = p, width = 9, height = 5, dpi = 300)
 
 # Print to console for verification
 print(p)
