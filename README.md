@@ -19,7 +19,7 @@ The benchmark measures **tokens per second** (throughput) for different LLM serv
 ## Key Findings
 
 - **lmstudio** (MLX) shows ~2.2x higher tokens per second compared to **ollama** (GGUF)
-- **qwen3.5-9b-mlx** shows ~1.6x higher tokens per second compared to **qwen3.5-9b-gguf**
+- **qwen3.5-9b-mlx** shows ~1.6x higher tokens per second compared to **qwen3.5-9b-gguf** (both served by LM Studio)
 
 ## Data Sources
 
