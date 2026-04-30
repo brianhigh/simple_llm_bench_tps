@@ -1,0 +1,11 @@
+model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second
+lmstudio-community/qwen3.5-9b,11,200,211,11486,17.41
+lmstudio-community/qwen3.5-9b,11,214,225,12233,17.49
+lmstudio-community/qwen3.5-9b,11,212,223,12113,17.50
+lmstudio-community/qwen3.5-9b,11,201,212,11488,17.50
+lmstudio-community/qwen3.5-9b,11,214,225,12244,17.48
+lmstudio-community/qwen3.5-9b,11,200,211,11440,17.48
+lmstudio-community/qwen3.5-9b,11,242,253,13814,17.52
+lmstudio-community/qwen3.5-9b,11,240,251,13693,17.53
+lmstudio-community/qwen3.5-9b,11,251,262,14273,17.59
+lmstudio-community/qwen3.5-9b,11,201,212,11490,17.49
