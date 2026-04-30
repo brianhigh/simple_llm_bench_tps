@@ -1,7 +1,13 @@
 #!/bin/sh
 
+# Configure number of test iterations
+N=10
+
 # Setup folders
-mkdir -p ../data
+DATA_DIR="../data"
+mkdir -p "$DATA_DIR"
+
+# ---- LM Studio Test ----
 
 # Load model
 MODEL='qwen3.5-9b-mlx'
@@ -10,11 +16,14 @@ eval $CMD
 
 # Run benchmark
 HEADER="model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second"
-echo "$HEADER" > ../data/lmstudio_llm_bench.csv
-(for i in {1..10}; do eval $CMD; done) >> ../data/lmstudio_llm_bench.csv
+DATA_FILE="$DATA_DIR/lmstudio_llm_bench.csv"
+echo "$HEADER" > "$DATA_FILE"
+(for i in {1..${N}}; do eval $CMD; done) >> "$DATA_FILE"
 
 # Unload model
 lms unload "$MODEL"
+
+# ---- Ollama Test ----
 
 # Load model
 MODEL='qwen3.5:9b'
@@ -22,8 +31,9 @@ CMD="./llm_bench.sh http://localhost:11434 'ollama' '$MODEL'"
 eval $CMD
 
 # Run benchmark
-echo "$HEADER" > ../data/ollama_llm_bench.csv
-(for i in {1..10}; do eval $CMD; done) >> ../data/ollama_llm_bench.csv
+DATA_FILE="$DATA_DIR/ollama_llm_bench.csv"
+echo "$HEADER" > "$DATA_FILE"
+(for i in {1..${N}}; do eval $CMD; done) >> "$DATA_FILE"
 
 # Unload model
 curl http://localhost:11434/api/generate -d '{"model": "$MODEL", "keep_alive": 0}'
