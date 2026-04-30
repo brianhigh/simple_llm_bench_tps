@@ -27,6 +27,8 @@ RESP=$(curl -s -X POST "$URL/v1/chat/completions" \
 END_TIME=$(now_ms)
 ELAPSED_MS=$((END_TIME - START_TIME))
 
+CONTENT=$(echo "$RESP" | jq -r '.choices[0].message.content')
+
 TOK_IN=$(echo "$RESP" | jq -r '.usage.prompt_tokens')
 TOK_OUT=$(echo "$RESP" | jq -r '.usage.completion_tokens')
 TOK_TOTAL=$(echo "$RESP" | jq -r '.usage.total_tokens')
