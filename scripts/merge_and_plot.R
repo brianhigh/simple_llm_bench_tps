@@ -25,20 +25,22 @@ merged_data_quant_method <- bind_rows(mlx_data, gguf_data)
 
 # Create bar plot with one bar for each server
 aggregated_data_server <- merged_data_server |>
-  group_by(source) %>% summarise(tokens_per_second = mean(tokens_per_second, na.rm = TRUE))
+  group_by(source) %>% summarise(tokens_per_second = mean(tokens_per_second, na.rm = TRUE)) |>
+  mutate(source = ifelse(grepl('lmstudio', source), 'LM Studio', 'Ollama'))
 p1 <- ggplot(aggregated_data_server, aes(x = source, y = tokens_per_second, fill = source)) +
   geom_bar(stat = "identity") +
   labs(
     title = "Speed Test: LM Studio (MLX) vs. Ollama (GGUF)",
     subtitle = "Using Qwen3.5 9B on a 16 GB M1 Pro MacBook Pro",
-    x = "Source",
+    x = "Server",
     y = "Tokens Per Second (tokens/sec)",
     fill = "Source"
   ) + 
-  scale_fill_manual(values = c("lmstudio" = "#3498db", "ollama" = "#e74c3c")) +
+  scale_fill_manual(values = c("LM Studio" = "#3498db", "Ollama" = "#e74c3c")) +
   theme_minimal() +
   theme(
-    plot.subtitle = element_text(size = 10) # Change font size here
+    plot.subtitle = element_text(size = 10),
+    legend.position = "none"
   )
 
 # Save as PNG
@@ -59,14 +61,15 @@ p2 <- ggplot(aggregated_data_quant_method, aes(x = source, y = tokens_per_second
   labs(
     title = "Quantization Speed Test: MLX vs. GGUF",
     subtitle = "Using Qwen3.5 9B from LM Studio on a 16 GB M1 Pro MacBook Pro",
-    x = "Source",
+    x = "Quantization Method",
     y = "Tokens Per Second (tokens/sec)",
     fill = "Source"
   ) + 
   scale_fill_manual(values = c("MLX" = "#3498db", "GGUF" = "#e74c3c")) +
   theme_minimal() +
   theme(
-    plot.subtitle = element_text(size = 10) # Change font size here
+    plot.subtitle = element_text(size = 10),
+    legend.position = "none"
   )
 
 # Save as PNG
