@@ -10,11 +10,11 @@ The benchmark measures **tokens per second** (throughput) for different LLM serv
 
 ### Tokens Per Second by Server
 
-![Tokens Per Second by Server](images/server_box_plot.png)
+![Tokens Per Second by Server](images/server_bar_plot.png)
 
 ### Tokens Per Second by Quantization Method
 
-![Tokens Per Second by Server](images/quant_method_box_plot.png)
+![Tokens Per Second by Server](images/quant_method_bar_plot.png)
 
 ## Key Findings
 
@@ -30,7 +30,7 @@ The benchmark measures **tokens per second** (throughput) for different LLM serv
 
 ## Scripts
 
-- `scripts/merge_and_plot.R` - R script for merging datasets and generating the box plot
+- `scripts/merge_and_plot.R` - R script for merging datasets and generating the bar plots
 - `scripts/llm_bench.sh` - Shell script for running benchmarks
 - `scripts/llm_test_ollama_vs_lmstudio.sh` - Test script for running benchark N times
 - `scripts/llm_test_mlx_vs_gguf.sh` - Test script for running benchark N times
