@@ -1,17 +1,27 @@
 # R script to merge datasets and create bar plots
 
-# Load required libraries
-library(readr)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(here)
+# Load necessary packages
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman")
+pacman::p_load(readr, dplyr, tidyr, ggplot2, here)
+
+# Setup folder paths
+data_dir <- here("data")
+images_dir <- here("images")
+dir.create(images_dir,  showWarnings = FALSE, recursive = TRUE)
 
 # Read the datasets
-lmstudio_data <- read_csv(here("data", "lmstudio_llm_bench.csv"), show_col_types = FALSE)
-ollama_data <- read_csv(here("data", "ollama_llm_bench.csv"), show_col_types = FALSE)
-mlx_data <- read_csv(here("data", "qwen35-9b-mlx_llm_bench.csv"), show_col_types = FALSE)
-gguf_data <- read_csv(here("data", "qwen35-9b-gguf_llm_bench.csv"), show_col_types = FALSE)
+lmstudio_data <-
+  read_csv(file.path(data_dir, "lmstudio_llm_bench.csv"),
+           show_col_types = FALSE)
+ollama_data <-
+  read_csv(file.path(data_dir, "ollama_llm_bench.csv"),
+           show_col_types = FALSE)
+mlx_data <-
+  read_csv(file.path(data_dir, "qwen35-9b-mlx_llm_bench.csv"),
+           show_col_types = FALSE)
+gguf_data <-
+  read_csv(file.path(data_dir, "qwen35-9b-gguf_llm_bench.csv"),
+           show_col_types = FALSE)
 
 # Add a source column to distinguish the datasets
 lmstudio_data$source <- "LM Studio"
@@ -37,7 +47,7 @@ p1 <- ggplot(aggregated_data_server,
     x = "Server",
     y = "Tokens Per Second (tokens/sec)",
     fill = "Source"
-  ) + 
+  ) +
   scale_fill_manual(values = c("LM Studio" = "#3498db", "Ollama" = "#e74c3c")) +
   theme_minimal() +
   theme(
@@ -46,13 +56,13 @@ p1 <- ggplot(aggregated_data_server,
   )
 
 # Save as PNG
-dir.create(here("images"),  showWarnings = FALSE, recursive = TRUE)
-image_file <- here("images", "server_bar_plot.png")
-ggsave(image_file, plot = p1, width = 5, height = 4, dpi = 300)
+server_image_file <- file.path(images_dir, "server_bar_plot.png")
+ggsave(server_image_file, plot = p1, width = 5, height = 4, dpi = 300)
 
 # Print the speed ratio of LM Studio vs. Ollama
 print("Speed ratio: LM Studio (MLX) vs. Ollama (GGUF)")
-print(mean(lmstudio_data$tokens_per_second)/mean(ollama_data$tokens_per_second))
+print(mean(lmstudio_data$tokens_per_second) /
+        mean(ollama_data$tokens_per_second))
 
 # Create bar plot with one bar for each quantization method
 aggregated_data_quant_method <- merged_data_quant_method |> group_by(source) |>
@@ -64,11 +74,11 @@ p2 <- ggplot(aggregated_data_quant_method,
   geom_text(aes(label = tokens_per_second), vjust = 1.5, color = "white") +
   labs(
     title = "Quantization Speed Test: MLX vs. GGUF",
-    subtitle = "Using Qwen3.5 9B from LM Studio on a 16 GB M1 Pro MacBook Pro",
+    subtitle = "Using Qwen3.5 9B with LM Studio on a 16 GB M1 Pro MacBook Pro",
     x = "Quantization Method",
     y = "Tokens Per Second (tokens/sec)",
     fill = "Source"
-  ) + 
+  ) +
   scale_fill_manual(values = c("MLX" = "#3498db", "GGUF" = "#e74c3c")) +
   theme_minimal() +
   theme(
@@ -77,10 +87,10 @@ p2 <- ggplot(aggregated_data_quant_method,
   )
 
 # Save as PNG
-dir.create(here("images"),  showWarnings = FALSE, recursive = TRUE)
-image_file <- here("images", "quant_method_bar_plot.png")
-ggsave(image_file, plot = p2, width = 5, height = 4, dpi = 300)
+quant_method_image_file <- file.path(images_dir, "quant_method_bar_plot.png")
+ggsave(quant_method_image_file, plot = p2, width = 5, height = 4, dpi = 300)
 
 # Print the speed ratio of MLX vs. GGUF with LM Studio
 print("Speed ratio: MLX vs. GGUF (both served by LM Studio)")
-print(mean(mlx_data$tokens_per_second)/mean(gguf_data$tokens_per_second))
+print(mean(mlx_data$tokens_per_second) /
+        mean(gguf_data$tokens_per_second))
