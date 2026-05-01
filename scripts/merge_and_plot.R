@@ -29,6 +29,7 @@ aggregated_data_server <- merged_data_server |>
   mutate(source = ifelse(grepl('lmstudio', source), 'LM Studio', 'Ollama'))
 p1 <- ggplot(aggregated_data_server, aes(x = source, y = tokens_per_second, fill = source)) +
   geom_bar(stat = "identity") +
+  geom_text(aes(label = tokens_per_second), vjust = 1.5, color = "white") +
   labs(
     title = "Speed Test: LM Studio (MLX) vs. Ollama (GGUF)",
     subtitle = "Using Qwen3.5 9B on a 16 GB M1 Pro MacBook Pro",
@@ -58,6 +59,7 @@ aggregated_data_quant_method <- merged_data_quant_method |>
   mutate(source = ifelse(grepl('mlx', source), 'MLX', 'GGUF'))
 p2 <- ggplot(aggregated_data_quant_method, aes(x = source, y = tokens_per_second, fill = source)) +
   geom_bar(stat = "identity") +
+  geom_text(aes(label = tokens_per_second), vjust = 1.5, color = "white") +
   labs(
     title = "Quantization Speed Test: MLX vs. GGUF",
     subtitle = "Using Qwen3.5 9B from LM Studio on a 16 GB M1 Pro MacBook Pro",
