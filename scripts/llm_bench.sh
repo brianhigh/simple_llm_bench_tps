@@ -10,15 +10,11 @@ if [ -z "$URL" ] || [ -z "$API_KEY" ] || [ -z "$MODEL" ]; then
   exit 1
 fi
 
-PROMPT="hello"
-# Use the PROMPT_FILE string as the prompt if it's not a readable file
-if [ ! -z "$PROMPT_FILE" && ! -r "$PROMPT_FILE" ]; then
-  PROMPT="$PROMPT_FILE"
-fi
-
 # Use the PROMPT_FILE string as the prompt filename if it's readable
-if [ ! -z "$PROMPT_FILE" && -r "$PROMPT_FILE" ]; then
+if [ -z "$PROMPT_FILE" ]; then PROMPT_FILE="hello"; fi
+if [ -r "$PROMPT_FILE" ]; then
   PROMPT=$(jq -Rs . < "$PROMPT_FILE")
+else PROMPT="$PROMPT_FILE"
 fi
 
 # Portable millisecond timestamp
@@ -33,7 +29,7 @@ RESP=$(curl -s -X POST "$URL/v1/chat/completions" \
   -H "Authorization: Bearer $API_KEY" \
   -d "{
         \"model\": \"$MODEL\",
-        \"messages\": [{\"role\": \"user\", \"content\": $PROMPT}]
+        \"messages\": [{\"role\": \"user\", \"content\": \"$PROMPT\"}]
       }")
 
 END_TIME=$(now_ms)

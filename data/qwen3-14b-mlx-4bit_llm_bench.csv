@@ -1,0 +1,11 @@
+model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second
+qwen3-14b-mlx,9,120,129,6766,17.74
+qwen3-14b-mlx,9,82,91,4673,17.55
+qwen3-14b-mlx,9,107,116,6061,17.65
+qwen3-14b-mlx,9,84,93,4789,17.54
+qwen3-14b-mlx,9,76,85,4353,17.46
+qwen3-14b-mlx,9,134,143,7536,17.78
+qwen3-14b-mlx,9,98,107,5560,17.63
+qwen3-14b-mlx,9,189,198,10557,17.90
+qwen3-14b-mlx,9,83,92,4756,17.45
+qwen3-14b-mlx,9,101,110,5721,17.65

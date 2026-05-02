@@ -1,0 +1,11 @@
+model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second
+qwen2.5-coder-14b-instruct-mlx,30,10,40,701,14.27
+qwen2.5-coder-14b-instruct-mlx,30,10,40,694,14.41
+qwen2.5-coder-14b-instruct-mlx,30,10,40,676,14.79
+qwen2.5-coder-14b-instruct-mlx,30,10,40,666,15.02
+qwen2.5-coder-14b-instruct-mlx,30,10,40,705,14.18
+qwen2.5-coder-14b-instruct-mlx,30,31,61,1776,17.45
+qwen2.5-coder-14b-instruct-mlx,30,32,62,1818,17.60
+qwen2.5-coder-14b-instruct-mlx,30,31,61,1705,18.18
+qwen2.5-coder-14b-instruct-mlx,30,10,40,682,14.66
+qwen2.5-coder-14b-instruct-mlx,30,10,40,671,14.90

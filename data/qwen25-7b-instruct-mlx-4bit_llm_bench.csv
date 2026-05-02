@@ -1,0 +1,11 @@
+model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second
+qwen2.5-7b-instruct-mlx,30,10,40,433,23.09
+qwen2.5-7b-instruct-mlx,30,10,40,417,23.98
+qwen2.5-7b-instruct-mlx,30,10,40,413,24.21
+qwen2.5-7b-instruct-mlx,30,10,40,416,24.04
+qwen2.5-7b-instruct-mlx,30,10,40,416,24.04
+qwen2.5-7b-instruct-mlx,30,10,40,397,25.19
+qwen2.5-7b-instruct-mlx,30,10,40,418,23.92
+qwen2.5-7b-instruct-mlx,30,10,40,400,25.00
+qwen2.5-7b-instruct-mlx,30,10,40,433,23.09
+qwen2.5-7b-instruct-mlx,30,10,40,447,22.37

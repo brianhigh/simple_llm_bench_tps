@@ -1,0 +1,11 @@
+model,prompt_tokens,completion_tokens,total_tokens,elapsed_ms,tokens_per_second
+qwen3-4b-instruct-2507-mlx,403,11,414,378,29.10
+qwen3-4b-instruct-2507-mlx,403,25,428,636,39.31
+qwen3-4b-instruct-2507-mlx,403,25,428,649,38.52
+qwen3-4b-instruct-2507-mlx,403,25,428,637,39.25
+qwen3-4b-instruct-2507-mlx,403,11,414,401,27.43
+qwen3-4b-instruct-2507-mlx,403,11,414,373,29.49
+qwen3-4b-instruct-2507-mlx,403,11,414,378,29.10
+qwen3-4b-instruct-2507-mlx,403,25,428,649,38.52
+qwen3-4b-instruct-2507-mlx,403,11,414,365,30.14
+qwen3-4b-instruct-2507-mlx,403,25,428,636,39.31
