@@ -114,14 +114,14 @@ p3 <- ggplot(aggregated_data_qwen,
   geom_text(aes(label = tokens_per_second), hjust = 1.2, color = "white") +
   labs(
     title = "Speed Test: Qwen Models (MLX, 4-bit)",
-    subtitle = "Using Qwen3.5 9B with LM Studio on a 16 GB M1 Pro MacBook Pro",
+    subtitle = "Using LM Studio on a 16 GB M1 Pro MacBook Pro",
     x = "Model",
     y = "Tokens Per Second (tokens/sec)"
   ) +
   theme_minimal() +
   theme(
-    plot.title = element_text(hjust = 7.2),
-    plot.subtitle = element_text(hjust = 1.44, size = 10),
+    plot.title = element_text(hjust = 4),
+    plot.subtitle = element_text(hjust = 4.4, size = 10),
     legend.position = "none"
   ) + coord_flip()
 
