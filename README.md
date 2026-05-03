@@ -68,5 +68,5 @@ Generate the comparison plot:
 cd ../
 Rscript scripts/merge_and_plot.R
 # Or:
-#python3 scripts/merge_and_plot.py
+#python scripts/merge_and_plot.py
 ```
