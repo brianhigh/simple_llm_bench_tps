@@ -51,7 +51,11 @@ Run the benchmark script to generate results:
 cd scripts/
 ./llm_test_ollama_vs_lmstudio.sh
 ./llm_test_qwen35-9B_mlx_vs_gguf.sh
-./llm_test_qwen-series_mlx.sh
+./llm_test_qwen_series_mlx.sh
+# Or:
+#python ./llm_test_ollama_vs_lmstudio.py
+#python ./llm_test_qwen35-9B_mlx_vs_gguf.py
+#python ./llm_test_qwen_series_mlx.py
 ```
 
 Generate the comparison plot:
