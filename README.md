@@ -38,9 +38,9 @@ The benchmark measures **tokens per second** (throughput) for different LLM serv
 
 - `scripts/merge_and_plot.R` - R script for merging datasets and generating the bar plots
 - `scripts/llm_bench.sh` - Shell script for running benchmarks
-- `scripts/llm_test_ollama_vs_lmstudio.sh` - Test script for running server benchark
-- `scripts/llm_test_mlx_vs_gguf.sh` - Test script for running quant. benchark
-- `scripts/llm_test_qwen-series_mlx.sh` - Test script for running qwen benchark
+- `scripts/llm_test_ollama_vs_lmstudio.sh` - Test script for running server benchmark
+- `scripts/llm_test_mlx_vs_gguf.sh` - Test script for running quant. benchmark
+- `scripts/llm_test_qwen-series_mlx.sh` - Test script for running qwen benchmark
 
 ## Usage
 
